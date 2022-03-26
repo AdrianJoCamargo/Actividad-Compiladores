@@ -3,6 +3,7 @@ union, interseccion y demas'''
 
 from array import array
 from asyncio.windows_events import NULL
+from pickle import TRUE
 from alfabeto import Alfabeto
 from lenguaje import Lenguaje
 import random
@@ -10,9 +11,7 @@ alfabeto1=''
 alfabeto2=''
 palabras=''
 palabras2=''
-palabraLeng=[]
-'''def añadirPalabrasAlAlfabeto(palabras,palabras2,alfabeto1,alfabeto2):'''
-lenguajes=[]
+
 lenguaje1=''
 lenguaje2=''
 
@@ -100,46 +99,26 @@ def cerraduraDeestrellaAlfabeto():
             break
 
 
-def generarPalabrasLenguaje(palabras,anterior,caracteresMax,auxP):
-    global palabraLeng
-    if(caracteresMax==0):
-            
-        if anterior in palabraLeng :
-            caracteresMax=auxP
-            generarPalabrasLenguaje(palabras,"",caracteresMax,auxP)
-        else:
-            palabraLeng.insert(0,anterior)
-        
-    else:
-        aleatorio=random.randint(0,len(palabras)-1)
-        generarPalabrasLenguaje(palabras,anterior+palabras[aleatorio],caracteresMax-1,auxP)
 
 
-def ponerLandaLenguaje():
-    palabraLeng.insert(0,chr(955))
+
+
 
 def generarLenguajes(palabras):
     
-    global palabraLeng
+   
     global lenguaje1
     global lenguaje2
-    global lenguajes
+ 
     Npalabras=int(input('digite el numero de palabras que tendrán los lenguajes: '))
     caracterMax=int(input('digite el numero maximo de caracteres que podrá tener cada palabra'))
     
-    for zz in range(0,2):
-        palabraLeng=[]    
-        for i in range(0,Npalabras):
+    lenguaje1=Lenguaje(palabras,Npalabras,caracterMax)
+    lenguaje2=Lenguaje(palabras,Npalabras,caracterMax)
 
-            aleatorio=random.randint(1,caracterMax-1)
-            generarPalabrasLenguaje(palabras,"",aleatorio,caracterMax)
+    ' mostrarLenguajes()'
     
-        ponerLandaLenguaje()
-        lenguajes.insert(zz,palabraLeng)
-    
-    'para acceder a el lenguaje 1=lenguajes[0] y para el lenguaje 2 es: lenguajes[2]'
-    lenguaje1=Lenguaje()
-    lenguaje2=Lenguaje()
+ 
 
 
 def menuDeLenguaje():
@@ -159,30 +138,36 @@ def menuDeLenguaje():
             break
 
 def mostrarLenguajes():
-    print(lenguajes[0])
-    print(lenguajes[1])
+    print(lenguaje1.getPalabrasDelLenguaje())
+    print(lenguaje2.getPalabrasDelLenguaje())
 
 def unionDeLenguajes():
     mostrarLenguajes()
-    print('->>>>>>>>>>>>>>>>>>><',lenguaje1.union(lenguajes[0],lenguajes[1]))
+    print('->>>>>>>>>>>>>>>>>>><',lenguaje1.union(lenguaje2))
 
 def menuInversa():
+    
     print('a que lenguaje desea calcularle la inversa:')
-    print('1.A=',lenguaje1)
-    print('2.B=',lenguaje2)
+    print('1.A=',lenguaje1.getPalabrasDelLenguaje())
+    print('2.B=',lenguaje2.getPalabrasDelLenguaje())
+    print('3.atras')
+        
 
 def inversaLenguaje():
-    menuInversa()
-    opc=input()
-    while True:
+    while TRUE:
+       
+        menuInversa()
+        opc=int(input())
+        
         if(opc==1):
-            print(lenguaje1.inversa())
+            print('inversa del lenguaje A: ',lenguaje1.inversa())
+        if(opc==2):
+            print('inversa del lenguaje B: ',lenguaje2.inversa())
+        if(opc==3):
+            break
+        print('\n')
+   
         
-        
-
-    
-    
-
 
 
 def imprimirOpcionesDeLenguajeDeMenu():
@@ -201,7 +186,7 @@ def opcionesDeLenguajeMenu():
         opc=int(input())
         if(opc==1):
             unionDeLenguajes()
-        if(opc==2):
+        if(opc==6):
             inversaLenguaje()
         if(opc==8):
             break

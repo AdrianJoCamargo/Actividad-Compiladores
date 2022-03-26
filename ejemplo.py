@@ -13,7 +13,7 @@ from xml.etree.ElementPath import prepare_parent
 
 class ejemplo():
 
-    cadena=['ana','sex']
+    cadena=['aro','sala','acbd']
    
     aux2=''
     perra='peste'
@@ -24,7 +24,7 @@ class ejemplo():
     
     
 
-    while aux<2:
+    while aux<len(cadena):
         nc=len(cadena[aux])
         while nc>=1:
             print('->',+aux)
