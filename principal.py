@@ -200,6 +200,12 @@ def imprimirOpcionesDeLenguajeDeMenu():
     print('7.Calcular la cardinalidad de un lenguaje.')
     print('8.atras')
 
+def  interseccionLenguajes():
+    mostrarLenguajes()
+    l1=lenguaje1.getPalabrasDelLenguaje()
+    l2=lenguaje2.getPalabrasDelLenguaje()
+    print('interseccion:',lenguaje1.interseccion(l1,l2))
+
 def opcionesDeLenguajeMenu():
     while True:
         imprimirOpcionesDeLenguajeDeMenu()
@@ -208,6 +214,8 @@ def opcionesDeLenguajeMenu():
             unionDeLenguajes()
         if(opc==2):
             diferenciaDeLenguajes()
+        if(opc==3):
+            interseccionLenguajes()
         if(opc==6):
             inversaLenguaje()
         if(opc==8):
