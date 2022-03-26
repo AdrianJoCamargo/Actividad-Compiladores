@@ -167,8 +167,28 @@ def inversaLenguaje():
             break
         print('\n')
    
-        
-
+def menuDiferenciaDeLenguajes():
+    print('lenguaje A=',lenguaje1.getPalabrasDelLenguaje())
+    print('lenguaje B=',lenguaje2.getPalabrasDelLenguaje())
+    print('1.diferencia de A-B')
+    print('2.diferencia de B-A')
+    print('3.atras')
+    print('\n')
+def diferenciaDeLenguajes():
+    while True:
+        menuDiferenciaDeLenguajes()
+        opc=int(input())
+        if(opc==1):
+           print('diferencia A-B:') 
+           diferencia=lenguaje1.diferencia(lenguaje1.getPalabrasDelLenguaje(),lenguaje2.getPalabrasDelLenguaje())
+        if(opc==2):
+            print('diferencia B-A:') 
+            diferencia=lenguaje2.diferencia(lenguaje2.getPalabrasDelLenguaje(),lenguaje1.getPalabrasDelLenguaje())
+    
+        if (opc==3):
+            break
+        print(diferencia)
+    
 
 def imprimirOpcionesDeLenguajeDeMenu():
     print('1.calcular la Union entre lenguajes')
@@ -186,6 +206,8 @@ def opcionesDeLenguajeMenu():
         opc=int(input())
         if(opc==1):
             unionDeLenguajes()
+        if(opc==2):
+            diferenciaDeLenguajes()
         if(opc==6):
             inversaLenguaje()
         if(opc==8):
