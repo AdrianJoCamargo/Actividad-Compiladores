@@ -2,7 +2,7 @@
 union, interseccion y demas'''
 
 from array import array
-from asyncio.windows_events import NULL
+
 from pickle import TRUE
 from alfabeto import Alfabeto
 from lenguaje import Lenguaje
@@ -116,7 +116,7 @@ def generarLenguajes(palabras):
     lenguaje1=Lenguaje(palabras,Npalabras,caracterMax)
     lenguaje2=Lenguaje(palabras,Npalabras,caracterMax)
 
-    ' mostrarLenguajes()'
+    mostrarLenguajes()
     
  
 
@@ -206,6 +206,43 @@ def  interseccionLenguajes():
     l2=lenguaje2.getPalabrasDelLenguaje()
     print('interseccion:',lenguaje1.interseccion(l1,l2))
 
+def menuConcatenacion():
+    print('A=',lenguaje1.getPalabrasDelLenguaje())
+    print('B=',lenguaje2.getPalabrasDelLenguaje())
+    print('1.concatenar A*B')
+    print('2.concatenar B*A')
+    print('3.atras')
+
+    
+def concatenacionLenguajes():
+    while TRUE:
+        menuConcatenacion()
+        opc=int(input())
+        if(opc==1):
+            print('Concatenacion: ',lenguaje1.concatenacion(lenguaje2))
+        if(opc==2):
+            print('Concatenacion: ',lenguaje2.concatenacion(lenguaje1))
+        if(opc==3):
+            break
+
+def menuCardinalidad():
+    print('digite a que lenguaje quiere aplicarle la cardinalidad:')
+    print('1.A=',lenguaje1. getPalabrasDelLenguaje())
+    print('1.B=',lenguaje2. getPalabrasDelLenguaje())
+    print('3.atras')
+def cardinalidadLenguaje():
+    while TRUE:
+        menuCardinalidad()
+        
+        opc=int(input())
+        
+        if(opc==1):
+            print('cardinalidad:',lenguaje1.cardinalidad())
+        if(opc==2):
+            print('cardinalidad:',lenguaje2.cardinalidad())
+        if(opc==3):
+            break
+
 def opcionesDeLenguajeMenu():
     while True:
         imprimirOpcionesDeLenguajeDeMenu()
@@ -216,8 +253,12 @@ def opcionesDeLenguajeMenu():
             diferenciaDeLenguajes()
         if(opc==3):
             interseccionLenguajes()
+        if(opc==4):
+            concatenacionLenguajes()
         if(opc==6):
             inversaLenguaje()
+        if(opc==7):
+            cardinalidadLenguaje()
         if(opc==8):
             break
 

@@ -26,6 +26,8 @@ class Alfabeto(Idioma):
     def __ponerLanda__(self):
         
         self.arrayCerraduraEstrella.insert(0,chr(955))
+
+        
     def __generarPalabras__(self,palabras,Npalabras,caracteresMax):
        
         for i in range(0,Npalabras):

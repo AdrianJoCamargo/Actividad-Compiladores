@@ -19,6 +19,8 @@ class Idioma():
     def interseccion(self,array1,array2):
         conjunto1=set(array1)
         conjunto2=set(array2)
-        return conjunto1 & conjunto2 
+        inters=conjunto1 & conjunto2 
+        if(not inters):
+            inters='no hay elementos comunes'
+        return inters
         
-    
