@@ -7,7 +7,7 @@ from idioma import Idioma
 import random
 class Lenguaje(Idioma):
     
-    '''def __init__(self,palabras,Npalabras,caracterMax):
+    def __init__(self,palabras,Npalabras,caracterMax):
         self.palabras=palabras
         self.Npalabras=Npalabras
         self.caracterMax=caracterMax
@@ -23,14 +23,14 @@ class Lenguaje(Idioma):
                 aleatorio=random.randint(1,caracterMax)
 
             self.generarPalabrasLenguaje(palabras,"",aleatorio,caracterMax)
-        self.__ponerLanda__()'''
+        self.__ponerLanda__()
 
-    def __init__(self):
+    '''def __init__(self):
         self.palabraLeng=[]
         self.resultadoPotencia=[]
         self.contadorUniversal=0
         self.palabraLeng.insert(0,'ab')
-        self.palabraLeng.insert(1,'ac')
+        self.palabraLeng.insert(1,'ac')'''
       
     def __ponerLanda__(self):
         self.palabraLeng.insert(0,chr(955))
@@ -77,7 +77,7 @@ class Lenguaje(Idioma):
         aux=0
         sinLanda=[]
         'para eliminar el landa hay que poner el rango en 1'
-        for xx in range(0,len(self.palabraLeng)):
+        for xx in range(1,len(self.palabraLeng)):
             sinLanda.insert(aux,self.palabraLeng[xx])
             aux+=1
         return sinLanda
@@ -143,42 +143,52 @@ class Lenguaje(Idioma):
                 
 
       '''
-    'resultadoPotencia=AB,AC'
-    'anterior=AB   Npalabras=2 contador=0 Ncaracteres=0 aux=1 contador2=0'
-    def __potenciaRecursiva__(self,anterior,palabras,Npalabras,contador,Ncaracteres,aux,contador2):
+    'resultadoPotencia=AB,AC,ABAB,ABAC,ACAB'
+    'anterior=  Npalabras=2 contador=0 Ncaracteres=0 aux=2  contador2=1'
+
+    
+    def __potenciaRecursiva__(self,anterior,palabras,Npalabras,contadorAux,Ncaracteres,aux,contador2):
         if(Npalabras!=0):
-            if(Ncaracteres==0):
-                self.resultadoPotencia.insert(contador,anterior)
-                Ncaracteres=aux
-                self.__potenciaRecursiva__("",palabras,Npalabras-1,contador+1,Ncaracteres,aux,contador2+1)
-            else:
+            
+            if(contador2==len(palabras)):
+                contador2=contadorAux-1
                 
-                self.__potenciaRecursiva__(anterior+palabras[contador2],palabras,Npalabras,contador,Ncaracteres-1,aux,contador2)
+            if(Ncaracteres==0):
+                
+                size=len(self.resultadoPotencia)
+                
+                self.resultadoPotencia.insert(size,anterior)
+                Ncaracteres=aux
+            
+                
+                self.__potenciaRecursiva__("",palabras,Npalabras-1,contadorAux,Ncaracteres,aux,contador2)
+            else:
+                                                                                            
+                self.__potenciaRecursiva__(anterior+palabras[contador2],palabras,Npalabras,contador2,Ncaracteres-1,aux,contador2+1)
             
 
-    def __calcNpalabras__(self,Npotencia,palabras):
+    def __calcNpalabras__(self,Npotencia):
+        palabras=self.getPalabrasDelLenguajeSinLanda()
         return pow(len(palabras),Npotencia)
+
+    def __calcPotencia__(self,Npalabras):
+        
+        palabras=self.getPalabrasDelLenguajeSinLanda()
+        for i in range (Npalabras):
+            guardar=''
+            
+            for z in range(0,len(palabras)-1):
+                guardar+=palabras[z]+' '
+        
+        return guardar.split()
+
 
     def potencia(self,Npotencia):
         
-        if(not Npotencia==0):
-            ''' self.__ponerPrimeros__()'''
-            palabras=self.getPalabrasDelLenguajeSinLanda()
-            print('sin landa:',palabras)
-            'Npalabras es el numero de palabras que se generaran'
-            
-    
-
-            for xx in range(0,Npotencia):
-                print(xx+1)
-                Npalabras=self.__calcNpalabras__(xx+1,palabras)
-                
-                self.__potenciaRecursiva__("",palabras,Npalabras,0,xx,xx,0)
-
-
-        '''else:
-            self.resultadoPotencia.insert(0,chr(955))'''
-            
+        for i in range(1,Npotencia):
+            Npalabras=self.__calcNpalabras__(i)
+            print(self.__calcPotencia__(Npalabras))
+        
 
         return self.resultadoPotencia
     
@@ -212,11 +222,11 @@ class Lenguaje(Idioma):
 
 
 
-
+'''
 l1=Lenguaje()
 print('lenguaje1=',l1.getPalabrasDelLenguaje())
 print('potencia:')
-print(l1.potencia(3))
+print(l1.potencia(2))'''
 
 '''palabra='A','B','C'
 palabra2='er','o','imos'

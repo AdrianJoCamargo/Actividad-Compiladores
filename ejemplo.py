@@ -1,6 +1,9 @@
+
 from asyncio.windows_events import NULL
 from cmath import sin
+from contextlib import ContextDecorator
 import random
+import re
 from xml.etree.ElementPath import prepare_parent 
 
 
@@ -10,10 +13,43 @@ from xml.etree.ElementPath import prepare_parent
 
 
 
+'00 01 10 11 '
 
 class ejemplo():
+   
+    palabra=['A','B']
+    'AA AB BA BB'
+    '00 01 10 11'
 
-    cadena=['aro','sala','acbd']
+    array=[]
+
+    def getArray(self):
+        return self.array
+    def recursividad(self,anterior,contador,contadorAux,aux,iteraciones,change):
+
+        'anterior= contador=0 contadorAux=2 aux=2 iteraciones=3 change='
+        if(not iteraciones==1):
+            if(aux==2):
+                print(anterior)
+                self.array.insert(len(self.array),anterior)
+          
+                self.recursividad(self.palabra[contador],contador+1,contadorAux+1,1,iteraciones-1,change)
+            else:
+                if(contador==1):
+                    
+                    self.recursividad(anterior+self.palabra[contadorAux],contadorAux,contadorAux+1,aux+1,iteraciones,change)
+                else:
+                    self.recursividad(anterior+self.palabra[contador],contador,contadorAux,aux+1,iteraciones,change)
+
+        
+
+ej=ejemplo()
+
+
+ej.recursividad("",0,0,0,4,0)
+print(ej.getArray())
+
+'''   cadena=['aro','sala','acbd']
    
     aux2=''
     perra='peste'
@@ -22,8 +58,6 @@ class ejemplo():
     aux=0
     
     
-    
-
     while aux<len(cadena):
         nc=len(cadena[aux])
         while nc>=1:
@@ -38,13 +72,13 @@ class ejemplo():
 
 
 
-
-        
-        
-        
-
-
     '''
+        
+        
+        
+
+
+'''
      ''  palabras=input('digite las palabras que conformaran el Alfabeto: ')
     palabras=palabras.split(' ')
     CerrEstrella=[] 
@@ -88,11 +122,11 @@ class ejemplo():
     '''
 '''
 
-    for zz in range(0,len(palabras.split(' '))):
-        ArrayPalabras.insert(zz,palabras.split(' ')[zz])
+        for zz in range(0,len(palabras.split(' '))):
+            ArrayPalabras.insert(zz,palabras.split(' ')[zz])
 
-    for xx in range(0,len(ArrayPalabras)):
-        print('->>>>>>>>>>>>>>>>>>>><',ArrayPalabras[xx])
+        for xx in range(0,len(ArrayPalabras)):
+            print('->>>>>>>>>>>>>>>>>>>><',ArrayPalabras[xx])
 
 
 
